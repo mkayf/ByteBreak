@@ -31,9 +31,9 @@ function Signup() {
   }
 
   return (
-    <>
+    <> 
       <div className="form-box">
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit(signup)}>
           <span className="title">Sign up</span>
           <span className="subtitle">
             Create a free account with your email.
