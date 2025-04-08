@@ -12,7 +12,7 @@ import AuthLayout from './AuthLayout/AuthLayout'
 import RTE from './RTE/RTE'
 import Signup from './Signup/Signup'
 import Button from './Button/Button'
-
+import PostForm from './PostForm/PostForm'
 
 export {
     Header,
@@ -29,4 +29,5 @@ export {
     Signup,
     Input,
     Select,
+    PostForm
 }
