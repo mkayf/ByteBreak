@@ -5,6 +5,7 @@ import { login, logout } from './store/authSlice';
 import { Footer, Header } from './components';
 import Home from './pages/Home';
 import './App.css'
+import { Outlet } from 'react-router-dom';
 
 function App() {
 
@@ -30,8 +31,7 @@ function App() {
   return loading ? ('Loading') : (
     <>
       <Header/>
-      {/* Outlet */}
-      <Home/>
+        <Outlet />
       <Footer/>
     </>
   )
