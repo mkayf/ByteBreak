@@ -16,6 +16,7 @@ export class StorageService{
             return await this.storage.createFile(
                 config.appwriteBucketId,
                 ID.unique(),
+                file
             )
         } catch (error) {
             console.log('Appwrite service error :: uploadFile', error)
@@ -36,12 +37,14 @@ export class StorageService{
         }
     }
 
-    async getFilePreview(fileId){
+    getFilePreview(fileId){
         try {
-            return await this.storage.getFilePreview(
+            // using getFileView instead of getFilePreview because getFilePreview is not working for free tier plan:
+            const filePreview = this.storage.getFileView(
                 config.appwriteBucketId,
                 fileId
             )
+            return filePreview;
         } catch (error) {
             console.log('Appwrite service error :: getFilePreview', error)
             return false;

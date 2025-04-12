@@ -15,7 +15,7 @@ function Select({
         <select id={id} className={`px-4 py-2 bg-green-600 text-white rounded-xl ${className}`}  {...props} ref={ref}>
             {
                 options?.map((option) => (
-                    <option key={option} value={option}>${option}</option>
+                    <option key={option} value={option}>{option}</option>
                 ))
             }
         </select>

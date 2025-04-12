@@ -10,7 +10,7 @@ function Button({
 
 }) {
   return (
-    <button type={type} style={{backgroundColor : bgColor}} className={`outline-none px-6 py-4 ${className} ${color}`} {...props}>{text}</button>
+    <button type={type} className={`outline-none  ${className} ${color} ${bgColor}`} {...props}>{text}</button>
   )
 }
 

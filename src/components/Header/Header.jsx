@@ -26,12 +26,12 @@ function Header() {
     },
     {
       name : 'All posts',
-      URL : '/posts',
+      URL : '/allPosts',
       active : authStatus
     },
     {
       name : 'Add post',
-      URL : '/add-post',
+      URL : '/addPost',
       active : authStatus
     },
   ]
@@ -45,11 +45,11 @@ function Header() {
                       <Logo />
                     </a>
                     <div className="hidden md:ml-6 md:flex md:space-x-8">
-                      {/* {
+                      {
                         navItems.map((item, i) => (
                           item.active ? (
-                            <Link to="/" key={i}>
-                              <span  className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <Link to={item.URL} key={i}>
+                              <span  className="border-indigo-500 text-white inline-flex items-center px-1 pt-1 text-sm font-medium">
                               {item.name}
                               </span>
                             </Link>
@@ -57,13 +57,15 @@ function Header() {
                           :
                           null
                         ))
-                      } */}
+                      }
                     </div>
                 </div>
                 <div className="flex items-center">
-                    <div className="hidden md:ml-4 md:flex md:items-center">
+                    {authStatus && (
+                      <div className="hidden md:ml-4 md:flex md:items-center">
                       <LogoutBtn/>
                     </div>
+                    )}
                     <div className="flex items-center md:hidden">
                         <button type="button" className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
                             <span className="sr-only">Open main menu</span>
@@ -77,11 +79,11 @@ function Header() {
         </div>
         <div className="md:hidden hidden" id="mobile-menu">
             <div className="pt-2 pb-3 space-y-1">
-            {/* {
+            {
               navItems.map((item, i) => (
                   item.active ? (
-                    <Link to="/" key={i}>
-                      <span  className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    <Link to={item.URL} key={i}>
+                      <span  className="border-indigo-500 text-white inline-flex items-center px-1 pt-1 text-sm font-medium">
                       {item.name}
                       </span>
                     </Link>
@@ -89,13 +91,15 @@ function Header() {
                   :
                   null
                 ))
-              }   */}
+              }  
             </div>
-            <div className="pt-4 pb-3 border-t border-gray-200">
+            {authStatus && (
+              <div className="pt-4 pb-3 border-t border-gray-200">
                 <div className="flex items-center px-4">
                   <LogoutBtn/>
                 </div>
-            </div>
+              </div>
+            )}
         </div>
     </nav>
   )

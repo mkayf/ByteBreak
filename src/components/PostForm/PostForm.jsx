@@ -22,7 +22,7 @@ function PostForm({post}) {
 
  const submit = async (data) => {
     if(post){
-        const file = data.image[0] ? storageService.uploadFile(data.image[0]) : null;
+        const file = data.featured_img[0] ? storageService.uploadFile(data.featured_img[0]) : null;
 
         if(file){
             storageService.deleteFile(post.featured_img);
@@ -38,11 +38,12 @@ function PostForm({post}) {
         }
     }
     else{
-          const file = await storageService.uploadFile(data.image[0]);
+          const file = await storageService.uploadFile(data.featured_img[0]);
           if(file){
 
             const fileId = file.$id;
-            data.featurd_img = fileId;
+            data.featured_img = fileId;
+            console.log(data.featurd_img)
             const dbPost = await databaseService.createPost({
                 ...data,
                 userId : userData.$id
@@ -58,7 +59,7 @@ function PostForm({post}) {
 
  const slugTransformation = useCallback((value) => {
     if(value && typeof value === 'string'){
-        return value.trim().toLowerCase().replace(/^[a-zA-Z\d\s]+/g, '-').replace(/\s/g, '-');
+        return value.trim().toLowerCase().replace(/\s/g, '-');
     }
 
     return '';
@@ -95,7 +96,7 @@ function PostForm({post}) {
             <RTE label="Content: " name="content" control={control} defaultValue={getValues('content')} />
         </div>
         <div className='w-1/3 px-2'>
-            <Input label="Featured Image: " type="file" className="mb-4" accept="image/gif" {...required('image', {required : !post})} />    
+            <Input label="Featured Image: " type="file" className="mb-4" accept="image/*" {...register('featured_img', {required : !post})} />    
             {post && (
                 <div className='w-full mb-4'>
                     <img src={storageService.getFilePreview(post.featurd_img)} alt={post.title} className='rounded-lg' />
@@ -106,10 +107,10 @@ function PostForm({post}) {
             className="mb-4" {...register('status', {
                 required : true
             })} />
-            <Button type='submit' bgColor={post ? "bg-green-500" : undefined}
-            className='w-full'
+            <Button type='submit' bgColor={'bg-green-500'}
+            className='w-50 py-2 font-semibold rounded-lg' text={post ? 'Update' : 'Submit'}
              >
-                {post ? 'Update' : 'Submit'}
+                
             </Button>
         </div>
     </form>

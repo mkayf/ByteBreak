@@ -1,4 +1,3 @@
-import { data } from 'react-router-dom';
 import config from '../config/config';
 import { Client, Databases, Query, ID } from "appwrite";
 
@@ -12,14 +11,13 @@ export class DatabaseService{
         this.databases = new Databases(this.client);
     }
 
-    async createPost({title, content, slug, featuredImg, status}){
+    async createPost({title, content, slug, featured_img, status, userId}){
         try {
             return await this.databases.createDocument(
                 config.appwriteDatabaseId,
                 config.appwriteArticlesCollectionId,
-                slug,
-                {title, content, slug, featuredImg, status}
-            )
+                slug,   
+                {title, content, featured_img, status, userId})
         } catch (error) {
             console.log('Appwrite service error :: createPost', error)
             return false;

@@ -8,6 +8,7 @@ function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    
     databaseService.getAllPosts().then((posts) => {
       if(posts){
         setPosts(posts.documents);

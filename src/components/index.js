@@ -1,5 +1,4 @@
 import Header from './Header/Header'
-import Footer from './Footer/Footer'
 import Container from './Container/Container'
 import Hero from './Hero/Hero'
 import Logo from './Logo/Logo'
@@ -16,7 +15,6 @@ import PostForm from './PostForm/PostForm'
 
 export {
     Header,
-    Footer,
     Container,
     Button,
     Hero,
